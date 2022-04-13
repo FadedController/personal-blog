@@ -1,0 +1,16 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: public/assets
+publish_mode: editorial_workflow
+collections:
+  - label: Posts
+    name: posts
+    folder: content/posts
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Image, name: image, widget: image }
+      - { label: Image Description, name: altImage, widget: string }
+      - { label: Author, name: author, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - { label: Body, name: body, widget: markdown }
