@@ -1,3 +1,4 @@
+import { Title } from '@mantine/core'
 import { readFileSync } from 'fs'
 import { readdir, readFile } from 'fs/promises'
 import Markdown from 'markdown-to-jsx'
@@ -38,7 +39,9 @@ const PostPage: NextPage<PostPageProps> = ({ post }) => {
               alt={altImage}
             ></NextImage>
           </div>
-
+          <Title order={1} className="mb-4 px-6">
+            {title}
+          </Title>
           <Markdown options={markdownOptions}>{content}</Markdown>
         </div>
       </div>
@@ -88,21 +91,25 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Return all the files in the content/posts directory
-  const filePaths = await readdir('content/posts')
-  const paths = filePaths.map((f) => {
-    const fileContent = readFileSync(`content/posts/${f}`, 'utf8')
-    const { metadata } = parseMD(fileContent) as {
-      metadata: { [key: string]: string } | undefined
-    }
+  try {
+    const filePaths = await readdir('content/posts')
+    const paths = filePaths.map((f) => {
+      const fileContent = readFileSync(`content/posts/${f}`, 'utf8')
+      const { metadata } = parseMD(fileContent) as {
+        metadata: { [key: string]: string } | undefined
+      }
 
-    return {
-      params: {
-        slug: metadata?.slug ?? '',
-      },
-    }
-  })
+      return {
+        params: {
+          slug: metadata?.slug ?? '',
+        },
+      }
+    })
 
-  return { paths, fallback: false }
+    return { paths, fallback: false }
+  } catch (err) {
+    return { paths: [], fallback: false }
+  }
 }
 
 export default PostPage
