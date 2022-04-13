@@ -2,8 +2,8 @@ import { readdir, readFile } from 'fs/promises'
 import Markdown from 'markdown-to-jsx'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import parseMD from 'parse-md'
 import NextImage from 'next/image'
+import parseMD from 'parse-md'
 import { markdownOptions } from '../../utils/markdown.config'
 
 interface Post {
