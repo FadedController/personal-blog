@@ -8,6 +8,12 @@ const Home: NextPage = () => {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+
+        {/* Netlify CMS */}
+        <script
+          defer
+          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        ></script>
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
