@@ -1,6 +1,6 @@
 ---
 title: Hello! Welcome to my blog!
-slug: initial-post
+slug: third-post
 author: Axel Padilla <technicallyshould@parsethis.out>
 image: /assets/hero-1.jpg
 altImage: I like to write a little bit.

@@ -6,7 +6,7 @@ import { mantineTheme } from '../utils/mantine.config'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MantineProvider theme={mantineTheme} withGlobalStyles>
+    <MantineProvider theme={mantineTheme}>
       <NextNProgress />
       <Component {...pageProps} />
     </MantineProvider>

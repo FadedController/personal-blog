@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs'
 import { readdir, readFile } from 'fs/promises'
 import Markdown from 'markdown-to-jsx'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -50,8 +51,19 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async ({
 }) => {
   const slug = params?.slug as string | undefined
 
+  const filePaths = await readdir('content/posts')
+
+  const postFile = filePaths.filter((f) => {
+    const fileContent = readFileSync(`content/posts/${f}`, 'utf8')
+    const { metadata } = parseMD(fileContent) as {
+      content: string
+      metadata: { [key: string]: string } | undefined
+    }
+    return metadata?.slug === slug
+  })
+
   // Get contents from markdown file
-  const fileContent = await readFile(`content/posts/${slug}.md`, 'utf8')
+  const fileContent = await readFile(`content/posts/${postFile}`, 'utf8')
 
   // Parse markdown
   const { content, metadata } = parseMD(fileContent) as {
@@ -76,8 +88,18 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Return all the files in the content/posts directory
-  const paths = (await readdir('content/posts')).map((f) => {
-    return { params: { slug: f.replace('.md', '') } }
+  const filePaths = await readdir('content/posts')
+  const paths = filePaths.map((f) => {
+    const fileContent = readFileSync(`content/posts/${f}`, 'utf8')
+    const { metadata } = parseMD(fileContent) as {
+      metadata: { [key: string]: string } | undefined
+    }
+
+    return {
+      params: {
+        slug: metadata?.slug ?? '',
+      },
+    }
   })
 
   return { paths, fallback: false }
