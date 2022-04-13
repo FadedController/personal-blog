@@ -9,6 +9,8 @@ collections:
     create: true
     name: posts
     folder: content/posts
+    slug: '{{fields.slug}}'
+    preview_path: p/{{fields.slug}}
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Image, name: image, widget: image }
