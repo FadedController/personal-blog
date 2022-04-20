@@ -19,4 +19,4 @@ Max Verstappen suffered another DNF when his engine caught fire on the final lap
 
 The short answer is no, let me elaborate. Right now, Redbull have had the 2nd fastest car, really close to the Ferrari's ultimate pace, and yet they sit 3rd in the constructors championship behind last year's main title rivals Mercedes, despite them having the 3rd, 4th or even 5th fastest car at times. I don't see Redbull or Max Verstappen being able to defend the World Championship this year until they sort out their reliability issues.
 
-> To finish first, first you have to finish
+> To finish first, first you have to finish. - Michael Schumacher
